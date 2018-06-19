@@ -1,0 +1,76 @@
+﻿@using RestaurantReview.Web.Helpers
+@using RestaurantReview.Web.Models.ViewModels
+@model RestaurantReview.Core.Models.Restaurant
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> Reviews for @Model.Name</h2>
+<div class="row">
+    <div class="col-md-6">
+        @Html.Action("BestReview",
+                      new ReviewActionVm
+                      {
+                          RestaurantId = Model.Id,
+                          Type = Enums.ReviewDisplayType.Best
+                      })
+    </div>
+    <div class="col-md-6">
+        @Html.Action("BestReview", new ReviewActionVm
+        {
+            RestaurantId = Model.Id,
+            Type = Enums.ReviewDisplayType.Worse
+
+
+        })
+
+    </div>
+</div>
+
+<p class="text-right">
+    @Html.ActionLink("Create New", "Manage", new { restaurantId = Model.Id }, new { @class = "btn btn_success" })
+</p>
+@Html.Partial("_Reviews", Model.Reviews)
+
+@*<table class="table">
+        <tr>
+            <th>
+                Rating
+            </th>
+            <th>
+                Body
+            </th>
+            <th>
+                ReviewerName
+            </th>
+            <th>
+                ReviewDate
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Manage", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>*@

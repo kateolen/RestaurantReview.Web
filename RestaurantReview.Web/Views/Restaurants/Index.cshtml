@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RestaurantReview.Core.Models.Restaurant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p class="text-right">
+    @Html.ActionLink("Create New", "Create", null, new { @class= "btn btn-success"})
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Website)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            <a href="@item.Website" target="_blank">@item.Website</a>
+
+            @* or <a href="http://www.mcdonalds.com">@Html.DisplayFor(modelItem => item.Website)</a><br />*@
+
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Reviews", "Index", "Reviews", new { id=item.Id}, null)
+        </td>
+    </tr>
+}
+
+</table>

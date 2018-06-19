@@ -1,0 +1,76 @@
+﻿@model List<RestaurantReview.Web.Models.ViewModels.RestaurantListViewModels>
+@using System.Configuration
+@using RestaurantReview.Web.Helpers
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+<br />
+<div class="clearfix">
+   @using (Ajax.BeginForm(
+                                   new AjaxOptions
+                                   {
+                                       HttpMethod = "get",
+                                       InsertionMode = InsertionMode.Replace,
+                                       UpdateTargetId = "restaurantList"
+                                   }))
+   {
+    <div class="form-group">
+        <label> Search </label>
+        <input type="text"  class="form-control" name="searchRest" value="" /> 
+        <br />
+        <input type='submit' />
+    </div>
+   }
+            </div>
+
+
+    <div id="restaurantList">
+        @foreach (var restaurant in Model)
+        {
+            <div class="restaurant">
+                @*<h1 class="clearfix">
+                        <div class="pull-left">@restaurant.Name (@restaurant.CountOfReviews)   </div>
+                        <div class="pull-right">@Html.Ratings(restaurant.AverageScore)</div>
+                    </h1>*@
+
+                <h1 class="clearfix">
+                    @Html.ActionLink(restaurant.Name, "Index", "Reviews", new { id = restaurant.Id }, null)
+                    (@restaurant.CountOfReviews) - @Html.Ratings(restaurant.AverageScore) @restaurant.AverageScore
+                </h1>
+                <div class="body clearfix">
+                    <div>
+                        @if (!string.IsNullOrEmpty(restaurant.ImageUrl))
+                        {
+                            <img src="@ConfigurationManager.AppSettings["RestaurantImageUploadBase"]/@restaurant.Id/@restaurant.ImageUrl" />
+                        }
+
+                        else
+                        { <img src="~/Image/no-image.png">}
+
+
+                        <div>  @restaurant.Address  </div>
+                        <span>@restaurant.City</span>
+                        <div class="state"> @restaurant.Country </div>
+                        <div><a href="tel:@restaurant.Phone"> @restaurant.Phone</a></div>
+                        <div class="web"><a href="@restaurant.Website" target="_blank">@restaurant.Website</a></div>
+                        <div>@Html.ActionLink("Menu", "Index", "Menus", new {id = restaurant.Id }, null)</div>
+                    </div>
+                </div>
+            </div>
+        }
+        @Html.Partial("_Restaurants", Model)
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+

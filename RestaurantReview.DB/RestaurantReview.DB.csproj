@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82E50A57-2200-450C-9CAF-1323C9AF427A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RestaurantReview.DB</RootNamespace>
+    <AssemblyName>RestaurantReview.DB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContext\ReviewsDb.cs" />
+    <Compile Include="Migrations\201805292256034_InitialCreate.cs" />
+    <Compile Include="Migrations\201805292256034_InitialCreate.Designer.cs">
+      <DependentUpon>201805292256034_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805292313318_change data size.cs" />
+    <Compile Include="Migrations\201805292313318_change data size.Designer.cs">
+      <DependentUpon>201805292313318_change data size.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300028594_add review table.cs" />
+    <Compile Include="Migrations\201805300028594_add review table.Designer.cs">
+      <DependentUpon>201805300028594_add review table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300035329_setting relationship between tables.cs" />
+    <Compile Include="Migrations\201805300035329_setting relationship between tables.Designer.cs">
+      <DependentUpon>201805300035329_setting relationship between tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806120114172_Add restaurants.cs" />
+    <Compile Include="Migrations\201806120114172_Add restaurants.Designer.cs">
+      <DependentUpon>201806120114172_Add restaurants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806180106413_AddingMenuModel.cs" />
+    <Compile Include="Migrations\201806180106413_AddingMenuModel.Designer.cs">
+      <DependentUpon>201806180106413_AddingMenuModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806180358392_addingviewmodel.cs" />
+    <Compile Include="Migrations\201806180358392_addingviewmodel.Designer.cs">
+      <DependentUpon>201806180358392_addingviewmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RestaurantReview.Core\RestaurantReview.Core.csproj">
+      <Project>{70425196-7abb-446b-9f1c-b8318013f0ab}</Project>
+      <Name>RestaurantReview.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805292256034_InitialCreate.resx">
+      <DependentUpon>201805292256034_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805292313318_change data size.resx">
+      <DependentUpon>201805292313318_change data size.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300028594_add review table.resx">
+      <DependentUpon>201805300028594_add review table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300035329_setting relationship between tables.resx">
+      <DependentUpon>201805300035329_setting relationship between tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806120114172_Add restaurants.resx">
+      <DependentUpon>201806120114172_Add restaurants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806180106413_AddingMenuModel.resx">
+      <DependentUpon>201806180106413_AddingMenuModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806180358392_addingviewmodel.resx">
+      <DependentUpon>201806180358392_addingviewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

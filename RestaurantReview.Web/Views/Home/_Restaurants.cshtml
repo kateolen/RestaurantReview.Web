@@ -1,0 +1,37 @@
+﻿@model List<RestaurantReview.Web.Models.ViewModels.RestaurantListViewModels>
+@using System.Configuration
+@using RestaurantReview.Web.Helpers
+<div id="restaurantList">
+    @foreach (var restaurant in Model)
+    {
+        <div class="restaurant">
+            @*<h1 class="clearfix">
+                    <div class="pull-left">@restaurant.Name (@restaurant.CountOfReviews)   </div>
+                    <div class="pull-right">@Html.Ratings(restaurant.AverageScore)</div>
+                </h1>*@
+
+            <h1 class="clearfix">
+                @Html.ActionLink(restaurant.Name, "Index", "Reviews", new { id = restaurant.Id }, null)
+                (@restaurant.CountOfReviews) - @Html.Ratings(restaurant.AverageScore) @restaurant.AverageScore
+            </h1>
+            <div class="body clearfix">
+                <div>
+                    @if (!string.IsNullOrEmpty(restaurant.ImageUrl))
+                    {
+                        <img src="@ConfigurationManager.AppSettings["RestaurantImageUploadBase"]/@restaurant.Id/@restaurant.ImageUrl" />
+                    }
+
+                    else
+                    { <img src="~/Image/no-image.png">}
+
+
+                    <div>  @restaurant.Address  </div>
+                    <span>@restaurant.City</span>
+                    <div class="state"> @restaurant.Country </div>
+                    <div><a href="tel:@restaurant.Phone"> @restaurant.Phone</a></div>
+                    <div class="web"><a href="@restaurant.Website" target="_blank">@restaurant.Website</a></div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
